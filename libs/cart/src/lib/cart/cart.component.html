@@ -1,0 +1,15 @@
+<div class="cart">
+  <div *ngFor="let product of products$ | async">
+    <mat-card>
+      <img mat-card-avatar [src]="product.picture" alt="product picture">
+      <span class="spacer"></span>
+      {{ product.title }}
+      <span class="spacer"></span>
+      {{ product.price }}
+    </mat-card>
+  </div>
+
+  <div class="cart-total">
+    Total price: {{ totalAmount$ | async }}
+  </div>
+</div>

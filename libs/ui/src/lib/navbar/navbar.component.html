@@ -1,0 +1,15 @@
+<mat-toolbar class="navbar">
+  <span [routerLink]="['/']">{{title}}</span>
+  <span class="spacer"></span>
+  <div *ngIf="isLogged; then logged else notLogged"></div>
+  <button mat-icon-button [routerLink]="['/cart']">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+
+<ng-template #logged>
+  <button mat-button (click)="logout()">Logout</button>
+</ng-template>
+<ng-template #notLogged>
+  <button mat-button [routerLink]="['/auth']">Login</button>
+</ng-template>

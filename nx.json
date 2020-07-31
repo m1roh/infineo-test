@@ -21,5 +21,25 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "disk-shop": {
+      "tags": []
+    },
+    "disk-shop-e2e": {
+      "tags": [],
+      "implicitDependencies": ["disk-shop"]
+    },
+    "ui": {
+      "tags": []
+    },
+    "disks": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "cart": {
+      "tags": []
+    }
+  }
 }

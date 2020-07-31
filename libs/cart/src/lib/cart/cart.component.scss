@@ -1,0 +1,13 @@
+mat-card {
+  display: flex;
+  align-items: center;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}
+
+.cart-total {
+  margin-top: 50px;
+  text-align: center;
+}

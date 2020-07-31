@@ -1,0 +1,5 @@
+<mat-grid-list cols="2" rowHeight="500">
+  <mat-grid-tile *ngFor="let disk of disks$ | async">
+    <infineo-disk-shop-disk class="disk" [disk]="disk"></infineo-disk-shop-disk>
+  </mat-grid-tile>
+</mat-grid-list>

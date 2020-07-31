@@ -1,7 +1,293 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "disk-shop": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/disk-shop",
+      "sourceRoot": "apps/disk-shop/src",
+      "prefix": "infineo-disk-shop",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/disk-shop",
+            "index": "apps/disk-shop/src/index.html",
+            "main": "apps/disk-shop/src/main.ts",
+            "polyfills": "apps/disk-shop/src/polyfills.ts",
+            "tsConfig": "apps/disk-shop/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/disk-shop/src/favicon.ico",
+              "apps/disk-shop/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/disk-shop/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/disk-shop/src/environments/environment.ts",
+                  "with": "apps/disk-shop/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "disk-shop:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "disk-shop:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "disk-shop:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/disk-shop/tsconfig.app.json",
+              "apps/disk-shop/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/disk-shop/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/disk-shop/jest.config.js",
+            "tsConfig": "apps/disk-shop/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/disk-shop/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "disk-shop-e2e": {
+      "root": "apps/disk-shop-e2e",
+      "sourceRoot": "apps/disk-shop-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/disk-shop-e2e/cypress.json",
+            "tsConfig": "apps/disk-shop-e2e/tsconfig.e2e.json",
+            "devServerTarget": "disk-shop:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "disk-shop:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/disk-shop-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/disk-shop-e2e/**/*"
+            ]
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "infineo-disk-shop",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "disks": {
+      "projectType": "library",
+      "root": "libs/disks",
+      "sourceRoot": "libs/disks/src",
+      "prefix": "infineo-disk-shop",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/disks/tsconfig.lib.json",
+              "libs/disks/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/disks/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/disks/jest.config.js",
+            "tsConfig": "libs/disks/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/disks/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "infineo-disk-shop",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth/tsconfig.lib.json",
+              "libs/auth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/auth/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "tsConfig": "libs/auth/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "cart": {
+      "projectType": "library",
+      "root": "libs/cart",
+      "sourceRoot": "libs/cart/src",
+      "prefix": "infineo-disk-shop",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/cart/tsconfig.lib.json",
+              "libs/cart/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/cart/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/cart/jest.config.js",
+            "tsConfig": "libs/cart/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/cart/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "disk-shop"
 }

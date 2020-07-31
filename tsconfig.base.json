@@ -15,7 +15,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@infineo-disk-shop/ui": ["libs/ui/src/index.ts"],
+      "@infineo-disk-shop/disks": ["libs/disks/src/index.ts"],
+      "@infineo-disk-shop/auth": ["libs/auth/src/index.ts"],
+      "@infineo-disk-shop/cart": ["libs/cart/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
